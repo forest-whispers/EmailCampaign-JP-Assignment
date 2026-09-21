@@ -12,7 +12,7 @@ export const createLeadsController = async (req: Request, res: Response) =>
         leads = parseCsv(req.file)
     }
 
-    const result = await leadService.createLeadsService(req.body)
+    const result = await leadService.createLeadsService({ leads })
 
     return res.status(201).json(result)
 }
