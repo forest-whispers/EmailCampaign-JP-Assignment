@@ -20,7 +20,19 @@ const envSchema = z.object({
 
         GEMINI_API_KEY: z
         .string()
-        .min(1, "GEMINI_API_KEY is required")
+        .min(1, "GEMINI_API_KEY is required"),
+
+        GMAIL_USER: z
+        .string()
+        .min(1, "GMAIL_USER is required"),
+    
+        GMAIL_APP_PASSWORD: z
+        .string()
+        .min(1, "GMAIL_APP_PASSWORD is required"),
+    
+        PRESENTATION_PATH: z
+        .string()
+        .min(1, "PRESENTATION_PATH is required")
 })
 
 // parse process.env against schema

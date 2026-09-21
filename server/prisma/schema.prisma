@@ -44,16 +44,70 @@ enum Classification {
 }
 
 model Lead {
-  id             String          @id @default(uuid())
-  buyerName      String?
-  companyName    String?
-  email          String?         @unique
-  website        String?
-  country        String?
-  source         LeadSource
-  emailStatus    EmailStatus
-  classification Classification?
+  id                 String              @id @default(uuid())
+  buyerName          String?
+  companyName        String?
+  email              String?             @unique
+  website            String?
+  country            String?
+  source             LeadSource
+  emailStatus        EmailStatus
+  classification     Classification?
+  campaignRecipients CampaignRecipient[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([source])
+  @@index([emailStatus])
+  @@index([classification])
+  @@index([classification, createdAt])
+}
+
+enum CampaignRecipientStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+model Campaign {
+  id             String         @id @default(uuid())
+  name           String
+  classification Classification
+  subject        String
+  emailMessage   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recipients CampaignRecipient[]
+
+  @@index([createdAt])
+}
+
+model CampaignRecipient {
+  id           String                  @id @default(uuid())
+  campaignId   String
+  leadId       String
+  status       CampaignRecipientStatus @default(PENDING)
+  sentAt       DateTime?
+  errorMessage String?
+  createdAt    DateTime                @default(now())
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  lead     Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, leadId])
+  @@index([campaignId, status])
+  @@index([leadId])
+}
+
+model Settings {
+    id                    String   @id @default(uuid())
+    businessEmailMessage  String
+    individualEmailMessage String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
