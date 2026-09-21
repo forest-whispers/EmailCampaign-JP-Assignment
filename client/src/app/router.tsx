@@ -10,6 +10,7 @@ import { LeadsPage } from "../features/leads/pages/LeadsPage";
 import { CampaignsPage } from "../features/campaigns/pages/CampaignsPage";
 import { CampaignDetailPage } from "../features/campaigns/pages/CampaignDetailPage";
 import { ClassificationPage } from "../features/classification/pages/ClassificationPage";
+import { SettingsPage } from "../features/settings/pages/SettingsPage";
 
 export const router = createBrowserRouter([
   // Public routes (unauthenticated)
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/classification",
         element: <ClassificationPage />,
+      },
+      {
+        path: "/settings",
+        element: <SettingsPage />,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { LayoutDashboard, Users, Send, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, Send, Settings, LogOut } from "lucide-react";
 import { Button } from "../shared/components/Button";
 import { useLogoutMutation } from "@/features/auth/auth.queries";
 import type { AuthUser } from "@/features/auth/auth.types";
@@ -16,6 +16,7 @@ export const AppShell: React.FC<AppShellProps> = ({ user }) => {
     { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
     { label: "Leads", to: "/leads", icon: Users },
     { label: "Campaigns", to: "/campaigns", icon: Send },
+    { label: "Settings", to: "/settings", icon: Settings },
   ];
 
   return (
