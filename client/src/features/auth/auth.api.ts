@@ -1,5 +1,9 @@
 import { apiClient } from "@/lib/api";
-import type { LoginInput, AuthResponse, LogoutResponse } from "./auth.types";
+import type { LoginInput, RegisterInput, AuthResponse, LogoutResponse } from "./auth.types";
+
+export const registerApi = (data: RegisterInput): Promise<AuthResponse> => {
+  return apiClient.post<AuthResponse>("/auth/register", data);
+};
 
 export const loginApi = (data: LoginInput): Promise<AuthResponse> => {
   return apiClient.post<AuthResponse>("/auth/login", data);

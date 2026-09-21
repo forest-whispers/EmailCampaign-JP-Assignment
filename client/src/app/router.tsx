@@ -3,6 +3,7 @@ import { PublicLayout, AuthenticatedLayout } from "./layouts";
 
 // Auth feature
 import { LoginPage } from "../features/auth/pages/LoginPage";
+import { RegisterPage } from "../features/auth/pages/RegisterPage";
 
 // Features
 import { ReportsPage } from "../features/reports/pages/ReportsPage";
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Navigate to="/login" replace />,
+        element: <RegisterPage />,
       },
     ],
   },

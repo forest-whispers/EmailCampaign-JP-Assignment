@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { getMeApi, loginApi, logoutApi } from "./auth.api";
-import type { AuthUser, LoginInput } from "./auth.types";
+import { getMeApi, loginApi, registerApi, logoutApi } from "./auth.api";
+import type { AuthUser, LoginInput, RegisterInput } from "./auth.types";
 
 export const AUTH_QUERY_KEY = ["auth", "me"] as const;
 
@@ -18,6 +18,24 @@ export function useCurrentUserQuery() {
     },
     retry: false,
     staleTime: 5 * 60 * 1000,
+  });
+}
+
+/**
+ * Register mutation.
+ * Sets the query cache directly with the returned user and navigates to /dashboard.
+ */
+export function useRegisterMutation() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: (credentials: RegisterInput) => registerApi(credentials),
+    onSuccess: (response) => {
+      // Set query cache directly with the authenticated user
+      queryClient.setQueryData(AUTH_QUERY_KEY, response.user);
+      navigate("/dashboard", { replace: true });
+    },
   });
 }
 

@@ -7,9 +7,11 @@ import { errorHandler } from "./shared/errors/errorHandler.js";
 import router from "./routes.js";
 
 const app = express();
+app.set("trust proxy", 1);
 
 const allowedOrigins = [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",
     "https://email-campaign-jp-assignment.vercel.app",
     "https://vercel.com/forest-whispers-projects/email-campaign-jp-assignment/9DQTj8u8fcXTjKLz1xPR3XhJb78s"
 ];

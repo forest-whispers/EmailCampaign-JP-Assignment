@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { Button } from "@/app/shared/components/Button";
 import { Input } from "@/app/shared/components/Input";
 import { Spinner } from "@/app/shared/components/Spinner";
 import { getErrorMessage } from "@/app/shared/utils/getErrorMessage";
 import { useCurrentUserQuery, useLoginMutation } from "../auth.queries";
+
+const DEMO_EMAIL = "demo@example.com";
+const DEMO_PASSWORD = "Demo@123456";
 
 export const LoginPage: React.FC = () => {
   const { data: user, isLoading: isCheckingAuth } = useCurrentUserQuery();
@@ -32,6 +35,12 @@ export const LoginPage: React.FC = () => {
     if (!email.trim() || !password.trim()) return;
 
     loginMutation.mutate({ email: email.trim(), password });
+  };
+
+  const handleDemoLogin = () => {
+    setEmail(DEMO_EMAIL);
+    setPassword(DEMO_PASSWORD);
+    loginMutation.mutate({ email: DEMO_EMAIL, password: DEMO_PASSWORD });
   };
 
   const errorMessage = loginMutation.error
@@ -82,12 +91,41 @@ export const LoginPage: React.FC = () => {
           type="submit"
           variant="primary"
           className="w-full mt-2"
-          isLoading={loginMutation.isPending}
+          isLoading={loginMutation.isPending && email !== DEMO_EMAIL}
           disabled={loginMutation.isPending}
         >
           Sign In
         </Button>
       </form>
+
+      {/* Quick Login / Demo Account */}
+      <div className="pt-3 border-t border-zinc-800 space-y-2">
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-zinc-400 font-medium">Demo Account</span>
+          <span className="text-zinc-500 font-mono text-[11px]">{DEMO_EMAIL}</span>
+        </div>
+        <Button
+          type="button"
+          variant="secondary"
+          size="sm"
+          className="w-full text-xs text-zinc-300 hover:text-white"
+          onClick={handleDemoLogin}
+          disabled={loginMutation.isPending}
+          isLoading={loginMutation.isPending && email === DEMO_EMAIL}
+        >
+          Login as Demo
+        </Button>
+      </div>
+
+      <div className="pt-2 text-center text-xs text-zinc-400 border-t border-zinc-800">
+        New here?{" "}
+        <Link
+          to="/register"
+          className="font-medium text-zinc-200 hover:text-white underline underline-offset-4"
+        >
+          Register
+        </Link>
+      </div>
     </div>
   );
 };
