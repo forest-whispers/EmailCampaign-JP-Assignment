@@ -10,6 +10,7 @@ import { CreateLeadDialog } from "../components/CreateLeadDialog";
 import { EditLeadDialog } from "../components/EditLeadDialog";
 import { ImportCsvDialog } from "../components/ImportCsvDialog";
 import { DeleteLeadsDialog } from "../components/DeleteLeadsDialog";
+import { ClassificationButton } from "@/features/classification/components/ClassificationButton";
 import type {
   Classification,
   EmailStatus,
@@ -139,6 +140,22 @@ export const LeadsPage: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-2">
+          <ClassificationButton
+            onSuccess={(res) => {
+              if (res.processedCount > 0) {
+                setFeedbackMessage(
+                  `${res.processedCount} lead(s) classified successfully.`
+                );
+              } else {
+                setFeedbackMessage(
+                  "No eligible leads available for classification."
+                );
+              }
+            }}
+            onError={(err) => {
+              setFeedbackMessage(getErrorMessage(err));
+            }}
+          />
           <Button
             variant="secondary"
             size="sm"
