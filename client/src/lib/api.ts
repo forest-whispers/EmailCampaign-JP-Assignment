@@ -23,7 +23,7 @@ export interface RequestOptions extends Omit<RequestInit, "body"> {
   data?: any;
 }
 
-const BASE_URL = import.meta.env.VITE_API_URL || "/api";
+const BASE_URL = (import.meta.env.VITE_API_URL || "/api").replace(/\/$/, "");
 
 async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
   const { params, data, headers, ...customConfig } = options;

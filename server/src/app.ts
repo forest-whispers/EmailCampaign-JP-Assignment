@@ -9,7 +9,9 @@ import router from "./routes.js";
 const app = express();
 
 const allowedOrigins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://email-campaign-jp-assignment.vercel.app/",
+    "https://vercel.com/forest-whispers-projects/email-campaign-jp-assignment/9DQTj8u8fcXTjKLz1xPR3XhJb78s"
 ];
 
 app.use(helmet());
