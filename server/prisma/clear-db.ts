@@ -13,7 +13,6 @@ async function main() {
     // 2. Delete main entity tables with foreign keys or independent data
     await prisma.campaign.deleteMany();
     await prisma.lead.deleteMany();
-    await prisma.settings.deleteMany();
     await prisma.user.deleteMany();
 
     console.log("✅ Database completely cleared.");

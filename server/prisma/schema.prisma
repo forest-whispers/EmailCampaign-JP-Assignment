@@ -102,12 +102,3 @@ model CampaignRecipient {
   @@index([campaignId, status])
   @@index([leadId])
 }
-
-model Settings {
-    id                    String   @id @default(uuid())
-    businessEmailMessage  String
-    individualEmailMessage String
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
