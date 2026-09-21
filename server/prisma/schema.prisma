@@ -21,3 +21,39 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum LeadSource {
+  GOOGLE
+  FACEBOOK
+  LINKEDIN
+  DIRECTORY
+  WEBSITE
+  CSV
+  OTHER
+}
+
+enum EmailStatus {
+  VALID
+  INVALID
+  MISSING
+}
+
+enum Classification {
+  BUSINESS
+  INDIVIDUAL
+}
+
+model Lead {
+  id             String          @id @default(uuid())
+  buyerName      String?
+  companyName    String?
+  email          String?         @unique
+  website        String?
+  country        String?
+  source         LeadSource
+  emailStatus    EmailStatus
+  classification Classification?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

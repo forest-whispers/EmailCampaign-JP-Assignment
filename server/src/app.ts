@@ -4,7 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 
 import { errorHandler } from "./shared/errors/errorHandler.js";
-import { router } from "./routes.js";
+import router from "./routes.js";
 
 const app = express();
 

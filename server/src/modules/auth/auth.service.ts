@@ -6,7 +6,7 @@ import { generateToken } from "@/shared/lib/jwt.js";
 
 export const registerService = async ({ email, password}: RegisterInput) =>
 {
-    email = email.trim()
+    email = email.trim().toLowerCase()
 
     const existingUser = await prisma.user.findUnique({
         where: {
@@ -41,7 +41,7 @@ export const registerService = async ({ email, password}: RegisterInput) =>
 
 export const loginService = async ({ email, password}: LoginInput) =>
 {
-    email = email.trim()
+    email = email.trim().toLowerCase()
 
     const user = await prisma.user.findUnique({
         where: {

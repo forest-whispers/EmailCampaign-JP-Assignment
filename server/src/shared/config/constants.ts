@@ -3,5 +3,5 @@ export const constants = {
 
     JWT_COOKIE_NAME: "jwtToken",
 
-    JWT_COOKIE_MAX_AGE: 15 * 60 * 1000,
+    JWT_COOKIE_MAX_AGE: 15 * 60 * 1000
 } as const;

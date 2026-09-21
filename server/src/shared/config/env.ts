@@ -17,6 +17,10 @@ const envSchema = z.object({
     JWT_SECRET: z
         .string()
         .min(5, "JWT_SECRET must be at least 5 characters"),
+
+        GEMINI_API_KEY: z
+        .string()
+        .min(1, "GEMINI_API_KEY is required")
 })
 
 // parse process.env against schema
