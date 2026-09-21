@@ -3,6 +3,7 @@ import { asyncHandler } from "../../shared/middleware/asyncHandler.js";
 import { validate } from "@/shared/middleware/validate.js";
 import * as authController from "./auth.controller.js";
 import { registerSchema, loginSchema } from "./auth.validation.js";
+import { authenticate } from "@/shared/middleware/authenticate.js";
 
 const router = Router();
 
