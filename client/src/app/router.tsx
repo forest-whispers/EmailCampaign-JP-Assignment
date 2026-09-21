@@ -4,8 +4,8 @@ import { PublicLayout, AuthenticatedLayout } from "./layouts";
 // Auth feature
 import { LoginPage } from "../features/auth/pages/LoginPage";
 
-// Feature page placeholders
-import { DashboardPage } from "../features/dashboard/pages/DashboardPage";
+// Features
+import { ReportsPage } from "../features/reports/pages/ReportsPage";
 import { LeadsPage } from "../features/leads/pages/LeadsPage";
 import { CampaignsPage } from "../features/campaigns/pages/CampaignsPage";
 import { CampaignDetailPage } from "../features/campaigns/pages/CampaignDetailPage";
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardPage />,
+        element: <ReportsPage />,
       },
       {
         path: "/leads",
