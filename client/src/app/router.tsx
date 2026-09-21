@@ -8,6 +8,7 @@ import { LoginPage } from "../features/auth/pages/LoginPage";
 import { DashboardPage } from "../features/dashboard/pages/DashboardPage";
 import { LeadsPage } from "../features/leads/pages/LeadsPage";
 import { CampaignsPage } from "../features/campaigns/pages/CampaignsPage";
+import { CampaignDetailPage } from "../features/campaigns/pages/CampaignDetailPage";
 import { ClassificationPage } from "../features/classification/pages/ClassificationPage";
 
 export const router = createBrowserRouter([
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "/campaigns",
         element: <CampaignsPage />,
+      },
+      {
+        path: "/campaigns/:id",
+        element: <CampaignDetailPage />,
       },
       {
         path: "/classification",
